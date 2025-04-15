@@ -9,12 +9,14 @@ disk: stage1.bin stage2.bin
 stage1.bin: bootsect.asm
 	nasm bootsect.asm -f bin -o stage1.bin
 
-stage2.bin: 
+stage2.bin: FORCE
 	make -C stage2/
 	mv stage2/stage2.bin ./stage2.bin
 
+FORCE: 
+
 run-qemu:
-	qemu-system-x86_64 -hda disk.iso
+	qemu-system-x86_64 -hda disk.iso -monitor stdio
 
 clean: 
 	rm disk.iso stage2.bin stage1.bin

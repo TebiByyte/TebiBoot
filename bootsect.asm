@@ -43,7 +43,6 @@ jc error.loaderror
 cli
 
 lgdt [GDT.ptr]
-mov eax, 0xdead
 mov eax, cr0
 or eax, 0x1
 mov cr0, eax
